@@ -82,7 +82,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'travel_booking_db',   # database name
         'USER': 'root',                # your MySQL username
-        'PASSWORD': 'Sairam@2004',   # your MySQL password
+        'PASSWORD': 'Your_sql_password',   # your MySQL password
         'HOST': 'localhost',
         'PORT': '3306',
     }

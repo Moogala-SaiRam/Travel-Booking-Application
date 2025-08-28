@@ -92,20 +92,13 @@ WSGI_APPLICATION = 'travel_booking.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-<<<<<<< HEAD
-        'NAME': 'your-db-username$your-db-name', # e.g., 'moogalaram$travel_booking_db'
-        'USER': 'your-db-username',             # e.g., 'moogalaram'
-        'PASSWORD': 'your-db-password',         # e.g., 'a_very_secure_password'
-        'HOST': 'your-db-hostname',             # e.g., 'your-db-username.mysql.pythonanywhere-services.com'
-=======
-        'NAME': 'travel_booking_db',   # database name
-        'USER': 'root',                # your MySQL username
-        'PASSWORD': 'Your_sql_password',   # your MySQL password
-        'HOST': 'localhost',
-        'PORT': '3306',
->>>>>>> 08c2a5172c2f8d2b735205806779f9d120bdc14a
+        'NAME': 'your-username$your-db-name',  # example: 'moogalaram$travel_booking_db'
+        'USER': 'your-username',               # example: 'moogalaram'
+        'PASSWORD': 'your-db-password',        # set from PythonAnywhere DB
+        'HOST': 'your-username.mysql.pythonanywhere-services.com',
     }
 }
+
 
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators

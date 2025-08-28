@@ -51,9 +51,9 @@ This project allows users to **view available travel options, book tickets, and 
 
 - **Backend:** Python (Django 5.x)  
 - **Frontend:** Django Templates, HTML, CSS, Bootstrap  
-- **Database:** SQLite (default) / MySQL (optional for production)  
+- **Database:** MySQL  
 - **Testing:** Django Test Framework (Unit Tests included)  
-- **Deployment Options:** AWS, PythonAnywhere, Railway, or Heroku  
+- **Deployment :** PythonAnywhere  
 
 ---
 

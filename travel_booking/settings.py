@@ -92,10 +92,10 @@ WSGI_APPLICATION = 'travel_booking.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'your-username$your-db-name',  # example: 'moogalaram$travel_booking_db'
-        'USER': 'your-username',               # example: 'moogalaram'
-        'PASSWORD': 'your-db-password',        # set from PythonAnywhere DB
-        'HOST': 'your-username.mysql.pythonanywhere-services.com',
+        'NAME': 'Sairammugala$default',  # example: 'moogalaram$travel_booking_db'
+        'USER': 'Sairammugala',               # example: 'moogalaram'
+        'PASSWORD': 'Moogala@2004',        # set from PythonAnywhere DB
+        'HOST': 'Sairammugala.mysql.pythonanywhere-services.com',
     }
 }
 

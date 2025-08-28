@@ -155,6 +155,17 @@ SESSION_EXPIRE_AT_BROWSER_CLOSE = False
 # Add this line to the end of the file:
 STATIC_ROOT = BASE_DIR / "static"
 
+import os
+
+# Static files (CSS, JS, images)
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+# Media files (user uploads)
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+
 
 
 

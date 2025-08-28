@@ -1,0 +1,42 @@
+# ==============================
+# Python
+# ==============================
+__pycache__/
+*.py[cod]
+*.so
+
+# ==============================
+# Virtual Environment
+# ==============================
+venv/
+env/
+ENV/
+.venv/
+.env
+
+# ==============================
+# Django
+# ==============================
+*.log
+*.pot
+*.pyc
+db.sqlite3
+media/
+staticfiles/
+
+# Ignore collected static (but keep static/ if you store source assets)
+static/
+
+# ==============================
+# IDE / Editor
+# ==============================
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+
+# ==============================
+# OS Specific
+# ==============================
+.DS_Store
+Thumbs.db

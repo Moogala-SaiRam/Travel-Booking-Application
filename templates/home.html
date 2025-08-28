@@ -1,0 +1,5 @@
+{% extends "base.html" %}
+{% block content %}
+  <h2>Welcome {{ request.user.is_authenticated|yesno:"back," }} {{ request.user.username|default:"Guest" }} 👋</h2>
+  <p>Use the navigation above to browse travel options, manage your bookings, or update your profile.</p>
+{% endblock %}

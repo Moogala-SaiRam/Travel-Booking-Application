@@ -1,36 +1,63 @@
 {% extends "base.html" %}
 {% block content %}
-<div>
-  <h2 class="mb-3">My Bookings</h2>
-  <table class="table table-bordered table-sm align-middle">
-    <thead>
-      <tr>
-        <th>Booking ID</th><th>Travel Option</th><th>Seats</th>
-        <th>Status</th><th>Booking Date</th><th>Total</th><th>Action</th>
-      </tr>
-    </thead>
-    <tbody>
-      {% for booking in bookings %}
-      <tr>
-        <td>{{ booking.booking_id }}</td>
-        <td>{{ booking.travel_option }}</td>
-        <td>{{ booking.seats_booked }}</td>
-        <td>{{ booking.status }}</td>
-        <td>{{ booking.booking_date }}</td>
-        <td>{{ booking.total_price }}</td>
-        <td>
-          {% if booking.status == "Confirmed" %}
-          <a href="{% url 'cancel_booking' booking.booking_id %}" class="btn btn-danger btn-sm">Cancel</a>
-          {% else %}
-          —
-          {% endif %}
-        </td>
-      </tr>
-      {% empty %}
-      <tr><td colspan="7" class="text-center">No bookings found</td></tr>
-      {% endfor %}
-    </tbody>
-  </table>
-  <a href="/" class="btn btn-secondary">Back to Home</a>
+<style>
+  .booking-bg {
+    background: url('https://images.unsplash.com/photo-1502920917128-1aa500764ce0?auto=format&fit=crop&w=1500&q=80') no-repeat center center fixed;
+    background-size: cover;
+    border-radius: 1rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .booking-bg-overlay {
+    background: rgba(0,0,0,0.6);
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    z-index: 0;
+  }
+  .booking-content {
+    position: relative;
+    z-index: 1;
+    color: #fff;
+  }
+</style>
+<div class="booking-bg p-4 mb-4">
+  <div class="booking-bg-overlay"></div>
+  <div class="booking-content">
+    <h2 class="mb-3 text-center">My Bookings</h2>
+    <div class="table-responsive">
+      <table class="table table-bordered table-hover table-dark align-middle rounded">
+        <thead class="table-light text-dark">
+          <tr>
+            <th>Booking ID</th><th>Travel Option</th><th>Seats</th>
+            <th>Status</th><th>Booking Date</th><th>Total</th><th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for booking in bookings %}
+          <tr>
+            <td>{{ booking.booking_id }}</td>
+            <td>{{ booking.travel_option }}</td>
+            <td>{{ booking.seats_booked }}</td>
+            <td>{{ booking.status }}</td>
+            <td>{{ booking.booking_date }}</td>
+            <td>₹{{ booking.total_price }}</td>
+            <td>
+              {% if booking.status == "Confirmed" %}
+              <a href="{% url 'cancel_booking' booking.booking_id %}" class="btn btn-danger btn-sm">Cancel</a>
+              {% else %}
+              —
+              {% endif %}
+            </td>
+          </tr>
+          {% empty %}
+          <tr><td colspan="7" class="text-center">No bookings found</td></tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    <div class="text-center mt-3">
+      <a href="/" class="btn btn-secondary">Back to Home</a>
+    </div>
+  </div>
 </div>
 {% endblock %}

@@ -1,66 +1,91 @@
 {% extends "base.html" %}
 {% block content %}
-<div>
-  <h2 class="mb-3">Available Travel Options</h2>
+<style>
+  .travel-bg {
+    background: url('https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=1500&q=80') no-repeat center center fixed;
+    background-size: cover;
+    border-radius: 1rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .travel-bg-overlay {
+    background: rgba(0,0,0,0.6);
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    z-index: 0;
+  }
+  .travel-content {
+    position: relative;
+    z-index: 1;
+    color: #fff;
+  }
+</style>
+<div class="travel-bg p-4 mb-4">
+  <div class="travel-bg-overlay"></div>
+  <div class="travel-content">
+    <h2 class="mb-3 text-center">Available Travel Options</h2>
 
-  <!-- Filter Form -->
-  <form method="get" class="row g-2 mb-4">
-    <div class="col-md-2">
-      <select name="type" class="form-select">
-        <option value="All">All Types</option>
-        <option value="Bus" {% if selected_type == "Bus" %}selected{% endif %}>Bus</option>
-        <option value="Train" {% if selected_type == "Train" %}selected{% endif %}>Train</option>
-        <option value="Flight" {% if selected_type == "Flight" %}selected{% endif %}>Flight</option>
-      </select>
-    </div>
-    <div class="col-md-3">
-      <input type="text" name="source" value="{{ source }}" class="form-control" placeholder="Source">
-    </div>
-    <div class="col-md-3">
-      <input type="text" name="destination" value="{{ destination }}" class="form-control" placeholder="Destination">
-    </div>
-    <div class="col-md-2">
-      <input type="date" name="date" value="{{ date }}" class="form-control">
-    </div>
-    <div class="col-md-2">
-      <button type="submit" class="btn btn-primary w-100">Search</button>
-    </div>
-    <div class="col-md-2">
-      <a href="{% url 'travel_list' %}" class="btn btn-secondary w-100">Clear Filters</a>
-    </div>
-  </form>
+    <!-- Filter Form -->
+    <form method="get" class="row g-2 mb-4 justify-content-center">
+      <div class="col-md-2">
+        <select name="type" class="form-select">
+          <option value="All">All Types</option>
+          <option value="Bus" {% if selected_type == "Bus" %}selected{% endif %}>Bus</option>
+          <option value="Train" {% if selected_type == "Train" %}selected{% endif %}>Train</option>
+          <option value="Flight" {% if selected_type == "Flight" %}selected{% endif %}>Flight</option>
+        </select>
+      </div>
+      <div class="col-md-3">
+        <input type="text" name="source" value="{{ source }}" class="form-control" placeholder="Source">
+      </div>
+      <div class="col-md-3">
+        <input type="text" name="destination" value="{{ destination }}" class="form-control" placeholder="Destination">
+      </div>
+      <div class="col-md-2">
+        <input type="date" name="date" value="{{ date }}" class="form-control">
+      </div>
+      <div class="col-md-2 d-grid">
+        <button type="submit" class="btn btn-primary">Search</button>
+      </div>
+      <div class="col-md-2 d-grid">
+        <a href="{% url 'travel_list' %}" class="btn btn-secondary">Clear Filters</a>
+      </div>
+    </form>
 
-  <!-- Travel Options Table -->
-  <table class="table table-bordered table-sm align-middle">
-    <thead>
-      <tr>
-        <th>Type</th><th>Source</th><th>Destination</th>
-        <th>Date & Time</th><th>Price</th><th>Seats</th><th>Action</th>
-      </tr>
-    </thead>
-    <tbody>
-      {% for travel in travels %}
-      <tr>
-        <td>{{ travel.type }}</td>
-        <td>{{ travel.source }}</td>
-        <td>{{ travel.destination }}</td>
-        <td>{{ travel.date_time }}</td>
-        <td>{{ travel.price }}</td>
-        <td>{{ travel.available_seats }}</td>
-        <td>
-          {% if request.user.is_authenticated and travel.available_seats > 0 %}
-            <a class="btn btn-success btn-sm" href="{% url 'create_booking' travel.pk %}">Book Now</a>
-          {% elif travel.available_seats|default:0 <= 0 %}
-            <span class="text-danger">Sold out</span>
-          {% else %}
-            <a class="btn btn-outline-primary btn-sm" href="{% url 'login' %}">Login to book</a>
-          {% endif %}
-        </td>
-      </tr>
-      {% empty %}
-      <tr><td colspan="7" class="text-center">No travel options found</td></tr>
-      {% endfor %}
-    </tbody>
-  </table>
+    <!-- Travel Options Table -->
+    <div class="table-responsive">
+      <table class="table table-bordered table-hover table-dark align-middle rounded">
+        <thead class="table-light text-dark">
+          <tr>
+            <th>Type</th><th>Source</th><th>Destination</th>
+            <th>Date & Time</th><th>Price</th><th>Seats</th><th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for travel in travels %}
+          <tr>
+            <td>{{ travel.type }}</td>
+            <td>{{ travel.source }}</td>
+            <td>{{ travel.destination }}</td>
+            <td>{{ travel.date_time }}</td>
+            <td>₹{{ travel.price }}</td>
+            <td>{{ travel.available_seats }}</td>
+            <td>
+              {% if request.user.is_authenticated and travel.available_seats > 0 %}
+                <a class="btn btn-success btn-sm" href="{% url 'create_booking' travel.pk %}">Book Now</a>
+              {% elif travel.available_seats|default:0 <= 0 %}
+                <span class="text-danger">Sold out</span>
+              {% else %}
+                <a class="btn btn-outline-primary btn-sm" href="{% url 'login' %}">Login to book</a>
+              {% endif %}
+            </td>
+          </tr>
+          {% empty %}
+          <tr><td colspan="7" class="text-center">No travel options found</td></tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
 </div>
 {% endblock %}

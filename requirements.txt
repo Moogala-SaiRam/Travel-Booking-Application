@@ -1,2 +1,7 @@
+<<<<<<< HEAD
 Django>=4.2
 mysqlclient>=2.2.0
+=======
+Django>=4.2
+mysqlclient>=2.2.0
+>>>>>>> 08c2a5172c2f8d2b735205806779f9d120bdc14a

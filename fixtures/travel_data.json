@@ -1,0 +1,62 @@
+[
+  {
+    "model": "travel.traveloption",
+    "pk": 1,
+    "fields": {
+      "type": "Bus",
+      "source": "Hyderabad",
+      "destination": "Bengaluru",
+      "date_time": "2025-09-01T09:00:00Z",
+      "price": "799.00",
+      "available_seats": 40
+    }
+  },
+  {
+    "model": "travel.traveloption",
+    "pk": 2,
+    "fields": {
+      "type": "Train",
+      "source": "Hyderabad",
+      "destination": "Chennai",
+      "date_time": "2025-09-02T18:00:00Z",
+      "price": "1299.00",
+      "available_seats": 60
+    }
+  },
+  {
+    "model": "travel.traveloption",
+    "pk": 3,
+    "fields": {
+      "type": "Flight",
+      "source": "Hyderabad",
+      "destination": "Mumbai",
+      "date_time": "2025-09-03T06:30:00Z",
+      "price": "3999.00",
+      "available_seats": 15
+    }
+  },
+  {
+    "model": "travel.traveloption",
+    "pk": 4,
+    "fields": {
+      "type": "Bus",
+      "source": "Delhi",
+      "destination": "Agra",
+      "date_time": "2025-09-01T07:00:00Z",
+      "price": "499.00",
+      "available_seats": 45
+    }
+  },
+  {
+    "model": "travel.traveloption",
+    "pk": 5,
+    "fields": {
+      "type": "Flight",
+      "source": "Delhi",
+      "destination": "Goa",
+      "date_time": "2025-09-04T11:00:00Z",
+      "price": "5499.00",
+      "available_seats": 20
+    }
+  }
+]

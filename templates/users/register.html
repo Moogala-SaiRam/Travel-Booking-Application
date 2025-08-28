@@ -1,10 +1,59 @@
 {% extends "base.html" %}
 {% block content %}
-<h2>Register</h2>
-<form method="post" class="border p-3 rounded bg-white">
-  {% csrf_token %}
-  {{ form.as_p }}
-  <button type="submit" class="btn btn-primary">Register</button>
-  <a href="{% url 'login' %}" class="btn btn-link">Already have an account? Login</a>
-</form>
+<style>
+  .register-container {
+    min-height: 60vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .register-card {
+    max-width: 500px;
+    width: 100%;
+    background: rgba(255,255,255,0.97);
+    border-radius: 1rem;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+    padding: 2rem 2rem 1.5rem 2rem;
+  }
+  .register-card label {
+    font-weight: 500;
+  }
+</style>
+<div class="register-container">
+  <div class="register-card">
+    <h2 class="text-center mb-4">Register</h2>
+    <form method="post">
+      {% csrf_token %}
+      {% for field in form %}
+        <div class="mb-3">
+          {{ field.label_tag }}
+          {{ field }}
+          {% if field.help_text %}
+            <small class="form-text text-muted password-help" {% if field.name != 'password1' %}style="display:inline"{% else %}style="display:none"{% endif %}>{{ field.help_text }}</small>
+          {% endif %}
+          {% for error in field.errors %}
+            <div class="text-danger small">{{ error }}</div>
+          {% endfor %}
+        </div>
+      {% endfor %}
+      <button type="submit" class="btn btn-primary w-100 mb-2">Register</button>
+      <a href="{% url 'login' %}" class="btn btn-link w-100">Already have an account? Login</a>
+      <script>
+        // Show/hide password help text on focus/blur
+        document.addEventListener('DOMContentLoaded', function() {
+          var pwdInput = document.getElementById('id_password1');
+          var pwdHelp = document.querySelector('.password-help');
+          if (pwdInput && pwdHelp) {
+            pwdInput.addEventListener('focus', function() {
+              pwdHelp.style.display = 'inline';
+            });
+            pwdInput.addEventListener('blur', function() {
+              pwdHelp.style.display = 'none';
+            });
+          }
+        });
+      </script>
+    </form>
+  </div>
+</div>
 {% endblock %}

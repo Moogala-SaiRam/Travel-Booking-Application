@@ -23,9 +23,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-477&1xyqf@r(+!q@v&@$hbl+s*g-72p0lyi06%@efztp!dj20o'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['Sairammugala.pythonanywhere.com']
 
 
 # Application definition
@@ -74,21 +74,30 @@ TEMPLATES = [
 WSGI_APPLICATION = 'travel_booking.wsgi.application'
 
 
-# Database
-# https://docs.djangoproject.com/en/5.2/ref/settings/#databases
+# # Database
+# # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'travel_booking_db',   # database name
+#         'USER': 'root',                # your MySQL username
+#         'PASSWORD': 'Sairam@2004',   # your MySQL password
+#         'HOST': 'localhost',
+#         'PORT': '3306',
+#     }
+# }
+
+# # Replace your current DATABASES dictionary with the new one from PythonAnywhere:
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'travel_booking_db',   # database name
-        'USER': 'root',                # your MySQL username
-        'PASSWORD': 'Sairam@2004',   # your MySQL password
-        'HOST': 'localhost',
-        'PORT': '3306',
+        'NAME': 'your-db-username$your-db-name', # e.g., 'moogalaram$travel_booking_db'
+        'USER': 'your-db-username',             # e.g., 'moogalaram'
+        'PASSWORD': 'your-db-password',         # e.g., 'a_very_secure_password'
+        'HOST': 'your-db-hostname',             # e.g., 'your-db-username.mysql.pythonanywhere-services.com'
     }
 }
-
-
 
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
@@ -141,6 +150,9 @@ LOGOUT_REDIRECT_URL = "login"
 # Session settings
 SESSION_COOKIE_AGE = 60 * 60 * 8  # 8 hours
 SESSION_EXPIRE_AT_BROWSER_CLOSE = False
+
+# Add this line to the end of the file:
+STATIC_ROOT = BASE_DIR / "static"
 
 
 

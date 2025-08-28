@@ -1,11 +1,49 @@
 {% extends "base.html" %}
 {% block content %}
-<h2>Cancel Booking #{{ booking.booking_id }}</h2>
-<p>Travel: {{ booking.travel_option }}</p>
-<p>Seats: {{ booking.seats_booked }}</p>
-<form method="post" class="mt-3">
-  {% csrf_token %}
-  <button type="submit" class="btn btn-danger">Yes, Cancel</button>
-  <a href="{% url 'booking_list' %}" class="btn btn-secondary ms-2">No, go back</a>
-</form>
+<style>
+  .cancel-container {
+    min-height: 60vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .cancel-card {
+    background: rgba(255,255,255,0.97);
+    border-radius: 1rem;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+    padding: 2.5rem 2.5rem 2rem 2.5rem;
+    max-width: 500px;
+    width: 100%;
+    text-align: center;
+  }
+  .cancel-card h2 {
+    font-weight: bold;
+    margin-bottom: 1.2rem;
+  }
+  .cancel-card p {
+    color: #333;
+    margin-bottom: 0.7rem;
+    font-size: 1.1rem;
+  }
+  .cancel-actions {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+  }
+</style>
+<div class="cancel-container">
+  <div class="cancel-card">
+    <h2>Cancel Booking #{{ booking.booking_id }}</h2>
+    <p><strong>Travel:</strong> {{ booking.travel_option }}</p>
+    <p><strong>Seats:</strong> {{ booking.seats_booked }}</p>
+    <form method="post">
+      {% csrf_token %}
+      <div class="cancel-actions">
+        <button type="submit" class="btn btn-danger">Yes, Cancel</button>
+        <a href="{% url 'booking_list' %}" class="btn btn-secondary">No, go back</a>
+      </div>
+    </form>
+  </div>
+</div>
 {% endblock %}
